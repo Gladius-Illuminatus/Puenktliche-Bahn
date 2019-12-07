@@ -31,7 +31,7 @@ public class Main extends Application {
 		//GUI 1 Andre Fuchs
 		Stage window = arg0;
 		String[] orte = { "test1", "test2", "test3", "test4", "test5" };
-		String fontG = "Texas New Roman";
+		String fontGlobal = "Times New Roman";
 
 		// image
 		
@@ -51,7 +51,7 @@ public class Main extends Application {
 
 		// _________GUI PANEL1_________________________
 		Label titlePanel1 = new Label("Fahrkartenautomat");
-		titlePanel1.setFont(Font.font(fontG, FontWeight.BOLD, 28));
+		titlePanel1.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		titlePanel1.setTextFill(Color.RED);
 
 		TextArea ankunftsortArea = new TextArea();
@@ -60,7 +60,7 @@ public class Main extends Application {
 		ankunftsortArea.setEditable(true);
 		ankunftsortArea.setPrefHeight(80.0);
 		ankunftsortArea.setPrefWidth(230);
-		ankunftsortArea.setFont(Font.font(fontG, FontWeight.BOLD, 28));
+		ankunftsortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		// ankunftsortArea.setTextFill(Color.RED);
 
 		TextArea zielortArea = new TextArea();
@@ -69,11 +69,11 @@ public class Main extends Application {
 		zielortArea.setEditable(true);
 		zielortArea.setPrefHeight(80.0);
 		zielortArea.setPrefWidth(230);
-		zielortArea.setFont(Font.font(fontG, FontWeight.BOLD, 28));
+		zielortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		// zielortArea.setTextFill(Color.RED);
 
 		Button btnConfirmGui1 = new Button("Auswahl bestätigen");
-		btnConfirmGui1.setFont(Font.font(fontG, FontWeight.BOLD, 28));
+		btnConfirmGui1.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 
 		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
 		vPanel1.setAlignment(Pos.CENTER);
@@ -108,41 +108,42 @@ public class Main extends Application {
 		// String currentTime
 
 		// BorderPane
-		BorderPane pane1 = new BorderPane();
-		pane1.setPadding(new Insets(5));
+		BorderPane panePanel2 = new BorderPane();
+		panePanel2.setPadding(new Insets(5));
+		panePanel2.setBackground(background);
 
 		// TOP
 		HBox top = new HBox(50);
 		Label title = new Label(titleOfGUI);
-		title.setFont(Font.font("Times New Roman", FontWeight.BOLD, 28));
+		title.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		top.getChildren().addAll(title);
 		top.setAlignment(Pos.TOP_CENTER);
-		pane1.setTop(top);
+		panePanel2.setTop(top);
 
 		// CENTER
 		VBox center = new VBox(20);
 		Label depart = new Label("Abfahrt von " + departLoc + " um: " + depTime + "h");
-		depart.setFont(Font.font("Times New Roman", FontWeight.BOLD, 28));
+		depart.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		Label dest = new Label("Ankunft in " + destLoc + " um: " + destTime + "h");
-		dest.setFont(Font.font("Times New Roman", FontWeight.BOLD, 28));
+		dest.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		Label travelTime = new Label("Fahrtzeit " + travelTimeInH + "h");
-		travelTime.setFont(Font.font("Times New Roman", FontWeight.BOLD, 28));
+		travelTime.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		center.getChildren().addAll(depart, dest, travelTime);
 		center.setAlignment(Pos.CENTER);
-		pane1.setCenter(center);
+		panePanel2.setCenter(center);
 
 		// BOTTOM
 		HBox bottom = new HBox(20);
 		Button btnConfirmGui2 = new Button("Auswahl bestätigen");
-		btnConfirmGui2.setFont(Font.font("Times New Roman", FontWeight.BOLD, 28));
+		btnConfirmGui2.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
 		bottom.getChildren().addAll(btnConfirmGui2);
 		bottom.setAlignment(Pos.TOP_CENTER);
-		pane1.setBottom(bottom);
+		panePanel2.setBottom(bottom);
 		
 
 		// window setup
 		Scene gui1 = new Scene(panePanel1, 900, 400);
-		Scene gui2 = new Scene(pane1, 900, 400);
+		Scene gui2 = new Scene(panePanel2, 900, 400);
 		
 		btnConfirmGui1.setOnAction(e -> {
 			System.out.println("from " + ankunftsortArea.getText() + " to " + zielortArea.getText());
