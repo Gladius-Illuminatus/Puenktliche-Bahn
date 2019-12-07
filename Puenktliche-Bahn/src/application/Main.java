@@ -34,7 +34,7 @@ public class Main extends Application {
 		String fontG = "Texas New Roman";
 
 		// image
-		/*
+		
 		String[] images = { "test1.jpeg", "test2.jpeg", "test3.jpeg", "test4.jpeg", "test5.jpeg",
 				"test6.jpeg"};
 		int chooseImage = (int) (Math.random() * images.length);
@@ -43,7 +43,7 @@ public class Main extends Application {
 		iv1.setFitWidth(200);
 		iv1.setPreserveRatio(true);
 		iv1.setSmooth(true);
-		 */
+		 
 		
 		// Background
 		BackgroundFill background_fill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
@@ -87,11 +87,11 @@ public class Main extends Application {
 		panePanel1.setBottom(btnConfirmGui1);
 		panePanel1.setAlignment(btnConfirmGui1, Pos.CENTER);
 		
-		/*
+		
 		panePanel1.setRight(iv1);
 		panePanel1.setMargin(iv1, new Insets(30));
 		panePanel1.setAlignment(iv1, Pos.TOP_RIGHT);
-		*/
+		
 		
 		panePanel1.setBackground(background);
 		
