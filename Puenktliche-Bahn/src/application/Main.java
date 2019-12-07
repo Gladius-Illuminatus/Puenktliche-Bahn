@@ -111,6 +111,7 @@ public class Main extends Application {
 		BorderPane panePanel2 = new BorderPane();
 		panePanel2.setPadding(new Insets(5));
 		panePanel2.setBackground(background);
+		panePanel2.setPadding(new Insets(30));
 
 		// TOP
 		HBox top = new HBox(50);
