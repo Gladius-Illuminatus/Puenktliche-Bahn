@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -27,11 +28,24 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		///
+		//Global Variables
+		String titleOfWindow = "Fahrkartenautomat der PB";
+		String titleOfGUI = "Fahrkartenautomat";
+		String departLoc = "dep";
+		String destLoc = "dest";
+		String depTime = "00:00";
+		String destTime = "11:12";
+		String travelTimeInH = "25";
+		String fontGlobal = "Times New Roman";
+		Color fontCollorGlobal = Color.RED;
+		int fontSizeGlobal = 40;
+		int sizeH = 1920;
+		int sizeV = 1080;
+		
+		
 		//GUI 1 Andre Fuchs
 		Stage window = arg0;
 		String[] orte = { "test1", "test2", "test3", "test4", "test5" };
-		String fontGlobal = "Times New Roman";
 
 		// image
 		
@@ -50,9 +64,9 @@ public class Main extends Application {
 		Background background = new Background(background_fill);
 
 		// _________GUI PANEL1_________________________
-		Label titlePanel1 = new Label("Fahrkartenautomat");
-		titlePanel1.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
-		titlePanel1.setTextFill(Color.RED);
+		Label titlePanel1 = new Label(titleOfGUI);
+		titlePanel1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		titlePanel1.setTextFill(fontCollorGlobal);
 
 		TextArea ankunftsortArea = new TextArea();
 		// ScrollPane scrollPane = new ScrollPane(textArea);
@@ -60,7 +74,7 @@ public class Main extends Application {
 		ankunftsortArea.setEditable(true);
 		ankunftsortArea.setPrefHeight(80.0);
 		ankunftsortArea.setPrefWidth(230);
-		ankunftsortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		ankunftsortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		// ankunftsortArea.setTextFill(Color.RED);
 
 		TextArea zielortArea = new TextArea();
@@ -69,11 +83,12 @@ public class Main extends Application {
 		zielortArea.setEditable(true);
 		zielortArea.setPrefHeight(80.0);
 		zielortArea.setPrefWidth(230);
-		zielortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		zielortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		// zielortArea.setTextFill(Color.RED);
 
 		Button btnConfirmGui1 = new Button("Auswahl bestätigen");
-		btnConfirmGui1.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		btnConfirmGui1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		btnConfirmGui1.setTextFill(fontCollorGlobal);
 
 		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
 		vPanel1.setAlignment(Pos.CENTER);
@@ -98,13 +113,7 @@ public class Main extends Application {
 
 		// GUI 2 Daniel Ott
 		// Variables
-		String titleOfWindow = "temp";
-		String titleOfGUI = "Fahrkartenautomat";
-		String departLoc = "dep";
-		String destLoc = "dest";
-		String depTime = "00:00";
-		String destTime = "11:12";
-		String travelTimeInH = "25";
+
 		// String currentTime
 
 		// BorderPane
@@ -116,19 +125,23 @@ public class Main extends Application {
 		// TOP
 		HBox top = new HBox(50);
 		Label title = new Label(titleOfGUI);
-		title.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		title.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		title.setTextFill(fontCollorGlobal);
 		top.getChildren().addAll(title);
 		top.setAlignment(Pos.TOP_CENTER);
 		panePanel2.setTop(top);
 
 		// CENTER
 		VBox center = new VBox(20);
-		Label depart = new Label("Abfahrt von " + departLoc + " um: " + depTime + "h");
-		depart.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
-		Label dest = new Label("Ankunft in " + destLoc + " um: " + destTime + "h");
-		dest.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		Label depart = new Label("Abfahrt von " + zielortArea.getText() + " um: " + depTime + "h");
+		depart.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		depart.setTextFill(fontCollorGlobal);
+		Label dest = new Label("Ankunft in " + ankunftsortArea.getText() + " um: " + destTime + "h");
+		dest.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		dest.setTextFill(fontCollorGlobal);
 		Label travelTime = new Label("Fahrtzeit " + travelTimeInH + "h");
-		travelTime.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		travelTime.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		travelTime.setTextFill(fontCollorGlobal);
 		center.getChildren().addAll(depart, dest, travelTime);
 		center.setAlignment(Pos.CENTER);
 		panePanel2.setCenter(center);
@@ -136,30 +149,35 @@ public class Main extends Application {
 		// BOTTOM
 		HBox bottom = new HBox(20);
 		Button btnConfirmGui2 = new Button("Auswahl bestätigen");
-		btnConfirmGui2.setFont(Font.font(fontGlobal, FontWeight.BOLD, 28));
+		btnConfirmGui2.setTextFill(fontCollorGlobal);
+		btnConfirmGui2.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		bottom.getChildren().addAll(btnConfirmGui2);
 		bottom.setAlignment(Pos.TOP_CENTER);
 		panePanel2.setBottom(bottom);
 		
 
 		// window setup
-		Scene gui1 = new Scene(panePanel1, 900, 400);
-		Scene gui2 = new Scene(panePanel2, 900, 400);
-		
+		Scene gui1 = new Scene(panePanel1, sizeH, sizeV);
+		Scene gui2 = new Scene(panePanel2, sizeH, sizeV);
+
+		//button setup
 		btnConfirmGui1.setOnAction(e -> {
 			System.out.println("from " + ankunftsortArea.getText() + " to " + zielortArea.getText());
 			window.setScene(gui2);
+			window.setFullScreen(true);
+			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		});
-		btnConfirmGui2.setOnAction(e -> window.setScene(gui1));
-		
-
+		btnConfirmGui2.setOnAction(e ->{
+			window.setScene(gui1);
+			window.setFullScreen(true);
+			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+		});
 		
 		window.setScene(gui1);
-		window.setTitle("Fahrkartenautomat der PB");
+		window.setTitle(titleOfWindow);
+		window.setFullScreen(true);
 		window.show();
-		/*
-		 * window.setScene(gui2); window.setTitle(titleOfWindow); window.show();
-		 */
+		
 	}
 
 }
