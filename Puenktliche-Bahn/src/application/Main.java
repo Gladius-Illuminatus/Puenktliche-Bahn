@@ -28,7 +28,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		//Global Variables
+		// Global Variables
 		String titleOfWindow = "Fahrkartenautomat der PB";
 		String titleOfGUI = "Fahrkartenautomat";
 		String departLoc = "dep";
@@ -41,24 +41,21 @@ public class Main extends Application {
 		int fontSizeGlobal = 40;
 		int sizeH = 1920;
 		int sizeV = 1080;
-		
-		
-		//GUI 1 Andre Fuchs
+
+		// GUI 1 Andre Fuchs
 		Stage window = arg0;
 		String[] orte = { "test1", "test2", "test3", "test4", "test5" };
 
 		// image
-		
-		String[] images = { "test1.jpeg", "test2.jpeg", "test3.jpeg", "test4.jpeg", "test5.jpeg",
-				"test6.jpeg"};
+
+		String[] images = { "test1.jpeg", "test2.jpeg", "test3.jpeg", "test4.jpeg", "test5.jpeg", "test6.jpeg" };
 		int chooseImage = (int) (Math.random() * images.length);
 		Image img = new Image(images[chooseImage]);
 		ImageView iv1 = new ImageView(img);
 		iv1.setFitWidth(200);
 		iv1.setPreserveRatio(true);
 		iv1.setSmooth(true);
-		 
-		
+
 		// Background
 		BackgroundFill background_fill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
 		Background background = new Background(background_fill);
@@ -101,15 +98,12 @@ public class Main extends Application {
 		panePanel1.setAlignment(vPanel1, Pos.CENTER);
 		panePanel1.setBottom(btnConfirmGui1);
 		panePanel1.setAlignment(btnConfirmGui1, Pos.CENTER);
-		
-		
+
 		panePanel1.setRight(iv1);
 		panePanel1.setMargin(iv1, new Insets(30));
 		panePanel1.setAlignment(iv1, Pos.TOP_RIGHT);
-		
-		
+
 		panePanel1.setBackground(background);
-		
 
 		// GUI 2 Daniel Ott
 		// Variables
@@ -154,30 +148,29 @@ public class Main extends Application {
 		bottom.getChildren().addAll(btnConfirmGui2);
 		bottom.setAlignment(Pos.TOP_CENTER);
 		panePanel2.setBottom(bottom);
-		
 
 		// window setup
 		Scene gui1 = new Scene(panePanel1, sizeH, sizeV);
 		Scene gui2 = new Scene(panePanel2, sizeH, sizeV);
 
-		//button setup
+		// button setup
 		btnConfirmGui1.setOnAction(e -> {
 			System.out.println("from " + ankunftsortArea.getText() + " to " + zielortArea.getText());
 			window.setScene(gui2);
 			window.setFullScreen(true);
 			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		});
-		btnConfirmGui2.setOnAction(e ->{
+		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
 			window.setFullScreen(true);
 			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		});
-		
+
 		window.setScene(gui1);
 		window.setTitle(titleOfWindow);
 		window.setFullScreen(true);
 		window.show();
-		
+
 	}
 
 }
