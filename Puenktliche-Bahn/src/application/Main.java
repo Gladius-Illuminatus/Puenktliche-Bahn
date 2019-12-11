@@ -10,12 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,43 +30,76 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
+
 		// Global Variables
+		// global settings to be uses throughout the programm
 		String titleOfWindow = "Fahrkartenautomat der PB";
-		String titleOfGUI = "Fahrkartenautomat";
+		String titleOfGUI = "Fahrkartenautomat der PB";
 		String departLoc = "dep";
 		String destLoc = "dest";
 		String depTime = "00:00";
 		String destTime = "11:12";
 		String travelTimeInH = "25";
-		String fontGlobal = "Times New Roman";
+		String fontGlobal = "Calibri";
 		Color fontCollorGlobal = Color.RED;
-		int fontSizeGlobal = 40;
+		int fontSizeGlobal = 80;
 		int sizeH = 1920;
-		int sizeV = 1080;
-
+		int sizeV = 1000;
+		int imageSize = 200;
+		
+		
 		// GUI 1 Andre Fuchs
+
+		// call arg0 window for easy use
 		Stage window = arg0;
-		String[] orte = { "test1", "test2", "test3", "test4", "test5" };
+		
+		// _________GUI PANEL1_________________________
 
 		// image
 
+		// String[] orte = { "test1", "test2", "test3", "test4", "test5" };
 		String[] images = { "test1.jpeg", "test2.jpeg", "test3.jpeg", "test4.jpeg", "test5.jpeg", "test6.jpeg" };
 		int chooseImage = (int) (Math.random() * images.length);
 		Image img = new Image(images[chooseImage]);
+		
+		//Image GUI1
 		ImageView iv1 = new ImageView(img);
-		iv1.setFitWidth(200);
+		iv1.setFitWidth(imageSize);
 		iv1.setPreserveRatio(true);
 		iv1.setSmooth(true);
+		
+		//Image GUI2
+		ImageView iv2 = new ImageView(img);
+		iv2.setFitWidth(imageSize);
+		iv2.setPreserveRatio(true);
+		iv2.setSmooth(true);
 
 		// Background
 		BackgroundFill background_fill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
 		Background background = new Background(background_fill);
 
-		// _________GUI PANEL1_________________________
+		// GUI 1 BorderPane
+		BorderPane borderPaneGUI1 = new BorderPane();
+		borderPaneGUI1.setBackground(background);
+		borderPaneGUI1.setPadding(new Insets(30));
+		
+
+		// TOP
+		HBox topGUI2 = new HBox(30);
 		Label titlePanel1 = new Label(titleOfGUI);
 		titlePanel1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		titlePanel1.setTextFill(fontCollorGlobal);
+		borderPaneGUI1.setTop(titlePanel1);
+		borderPaneGUI1.setAlignment(titlePanel1, Pos.CENTER);
+		
+		// RIGHT
+		
+		borderPaneGUI1.setRight(iv1);
+		borderPaneGUI1.setMargin(iv1, new Insets(30));
+		borderPaneGUI1.setAlignment(iv1, Pos.TOP_RIGHT);
+		borderPaneGUI1.setRight(iv1);
 
+		// CENTER
 		TextArea ankunftsortArea = new TextArea();
 		// ScrollPane scrollPane = new ScrollPane(textArea);
 		ankunftsortArea.setPromptText("Abfahrtsort");
@@ -83,47 +118,40 @@ public class Main extends Application {
 		zielortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		// zielortArea.setTextFill(Color.RED);
 
+		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
+		vPanel1.setAlignment(Pos.CENTER);
+		borderPaneGUI1.setCenter(vPanel1);
+		borderPaneGUI1.setAlignment(vPanel1, Pos.CENTER);
+
+		// BOTTOM
 		Button btnConfirmGui1 = new Button("Auswahl bestätigen");
 		btnConfirmGui1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		btnConfirmGui1.setTextFill(fontCollorGlobal);
-
-		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
-		vPanel1.setAlignment(Pos.CENTER);
-
-		BorderPane panePanel1 = new BorderPane();
-		panePanel1.setPadding(new Insets(30));
-		panePanel1.setTop(titlePanel1);
-		panePanel1.setAlignment(titlePanel1, Pos.CENTER);
-		panePanel1.setCenter(vPanel1);
-		panePanel1.setAlignment(vPanel1, Pos.CENTER);
-		panePanel1.setBottom(btnConfirmGui1);
-		panePanel1.setAlignment(btnConfirmGui1, Pos.CENTER);
-
-		panePanel1.setRight(iv1);
-		panePanel1.setMargin(iv1, new Insets(30));
-		panePanel1.setAlignment(iv1, Pos.TOP_RIGHT);
-
-		panePanel1.setBackground(background);
+		borderPaneGUI1.setBottom(btnConfirmGui1);
+		borderPaneGUI1.setAlignment(btnConfirmGui1, Pos.CENTER);
 
 		// GUI 2 Daniel Ott
-		// Variables
 
-		// String currentTime
-
-		// BorderPane
-		BorderPane panePanel2 = new BorderPane();
-		panePanel2.setPadding(new Insets(5));
-		panePanel2.setBackground(background);
-		panePanel2.setPadding(new Insets(30));
+		// GUI 2 BorderPane
+		BorderPane borderPaneGUI2 = new BorderPane();
+		borderPaneGUI2.setPadding(new Insets(5));
+		borderPaneGUI2.setBackground(background);
+		borderPaneGUI2.setPadding(new Insets(30));
 
 		// TOP
-		HBox top = new HBox(50);
+		HBox top = new HBox();
+		HBox.setHgrow(top, Priority.ALWAYS);
+		HBox topRight = new HBox(30);
+		HBox.setHgrow(topRight, Priority.ALWAYS);
 		Label title = new Label(titleOfGUI);
 		title.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		title.setTextFill(fontCollorGlobal);
-		top.getChildren().addAll(title);
+		topRight.getChildren().addAll(iv2);
+		topRight.setAlignment(Pos.TOP_RIGHT);
+		top.getChildren().addAll(title,topRight);
 		top.setAlignment(Pos.TOP_CENTER);
-		panePanel2.setTop(top);
+		borderPaneGUI2.setTop(top);
+		
 
 		// CENTER
 		VBox center = new VBox(20);
@@ -138,7 +166,7 @@ public class Main extends Application {
 		travelTime.setTextFill(fontCollorGlobal);
 		center.getChildren().addAll(depart, dest, travelTime);
 		center.setAlignment(Pos.CENTER);
-		panePanel2.setCenter(center);
+		borderPaneGUI2.setCenter(center);
 
 		// BOTTOM
 		HBox bottom = new HBox(20);
@@ -147,30 +175,27 @@ public class Main extends Application {
 		btnConfirmGui2.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		bottom.getChildren().addAll(btnConfirmGui2);
 		bottom.setAlignment(Pos.TOP_CENTER);
-		panePanel2.setBottom(bottom);
+		borderPaneGUI2.setBottom(bottom);
 
 		// window setup
-		Scene gui1 = new Scene(panePanel1, sizeH, sizeV);
-		Scene gui2 = new Scene(panePanel2, sizeH, sizeV);
+		Scene gui1 = new Scene(borderPaneGUI1, sizeH, sizeV);
+		Scene gui2 = new Scene(borderPaneGUI2, sizeH, sizeV);
+		window.setScene(gui1);
+		window.setTitle(titleOfWindow);
+		window.show();
+
 
 		// button setup
 		btnConfirmGui1.setOnAction(e -> {
-			System.out.println("from " + ankunftsortArea.getText() + " to " + zielortArea.getText());
+			System.out.println("from " + departLoc + " to " + zielortArea.getText());
 			window.setScene(gui2);
-			window.setFullScreen(true);
-			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		});
 		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
-			window.setFullScreen(true);
-			window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		});
 
-		window.setScene(gui1);
-		window.setTitle(titleOfWindow);
-		window.setFullScreen(true);
-		window.show();
 
+		
 	}
 
 }
