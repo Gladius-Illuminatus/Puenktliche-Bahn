@@ -34,7 +34,9 @@ public class Main extends Application {
 		// Global Variables
 		// global settings to be uses throughout the programm
 		String titleOfWindow = "Fahrkartenautomat der PB";
-		String titleOfGUI = "Fahrkartenautomat der PB";
+		//is it pretty NO!, does it work ? YES, do  I have a better solution ? wish I had...
+		//NEEDS FIXING
+		String titleOfGUI = "                    Fahrkartenautomat der PB";
 		String departLoc = "dep";
 		String destLoc = "dest";
 		String depTime = "00:00";
@@ -85,19 +87,36 @@ public class Main extends Application {
 		
 
 		// TOP
+		/*
 		HBox topGUI2 = new HBox(30);
 		Label titlePanel1 = new Label(titleOfGUI);
 		titlePanel1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		titlePanel1.setTextFill(fontCollorGlobal);
 		borderPaneGUI1.setTop(titlePanel1);
 		borderPaneGUI1.setAlignment(titlePanel1, Pos.CENTER);
+		*/
+		
+		HBox topGUI1 = new HBox();
+		HBox.setHgrow(topGUI1, Priority.ALWAYS);
+		HBox topRightGUI1 = new HBox(30);
+		HBox.setHgrow(topRightGUI1, Priority.ALWAYS);
+		Label titleGUI1 = new Label(titleOfGUI);
+		titleGUI1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		titleGUI1.setTextFill(fontCollorGlobal);
+		topRightGUI1.getChildren().addAll(iv1);
+		topRightGUI1.setAlignment(Pos.TOP_RIGHT);
+		topGUI1.getChildren().addAll(titleGUI1,topRightGUI1);
+		topGUI1.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI1.setTop(topGUI1);
+		
 		
 		// RIGHT
-		
+		/*
 		borderPaneGUI1.setRight(iv1);
 		borderPaneGUI1.setMargin(iv1, new Insets(30));
 		borderPaneGUI1.setAlignment(iv1, Pos.TOP_RIGHT);
 		borderPaneGUI1.setRight(iv1);
+		*/
 
 		// CENTER
 		TextArea ankunftsortArea = new TextArea();
@@ -108,6 +127,7 @@ public class Main extends Application {
 		ankunftsortArea.setPrefWidth(230);
 		ankunftsortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		// ankunftsortArea.setTextFill(Color.RED);
+		
 
 		TextArea zielortArea = new TextArea();
 		// ScrollPane scrollPane = new ScrollPane(zielortArea);
@@ -117,6 +137,7 @@ public class Main extends Application {
 		zielortArea.setPrefWidth(230);
 		zielortArea.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		// zielortArea.setTextFill(Color.RED);
+		
 
 		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
 		vPanel1.setAlignment(Pos.CENTER);
@@ -139,26 +160,26 @@ public class Main extends Application {
 		borderPaneGUI2.setPadding(new Insets(30));
 
 		// TOP
-		HBox top = new HBox();
-		HBox.setHgrow(top, Priority.ALWAYS);
-		HBox topRight = new HBox(30);
-		HBox.setHgrow(topRight, Priority.ALWAYS);
-		Label title = new Label(titleOfGUI);
-		title.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
-		title.setTextFill(fontCollorGlobal);
-		topRight.getChildren().addAll(iv2);
-		topRight.setAlignment(Pos.TOP_RIGHT);
-		top.getChildren().addAll(title,topRight);
-		top.setAlignment(Pos.TOP_CENTER);
-		borderPaneGUI2.setTop(top);
+		HBox topGUI2 = new HBox();
+		HBox.setHgrow(topGUI2, Priority.ALWAYS);
+		HBox topRightGUI2 = new HBox(30);
+		HBox.setHgrow(topRightGUI2, Priority.ALWAYS);
+		Label titleGUI2 = new Label(titleOfGUI);
+		titleGUI2.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		titleGUI2.setTextFill(fontCollorGlobal);
+		topRightGUI2.getChildren().addAll(iv2);
+		topRightGUI2.setAlignment(Pos.TOP_RIGHT);
+		topGUI2.getChildren().addAll(titleGUI2,topRightGUI2);
+		topGUI2.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI2.setTop(topGUI2);
 		
 
 		// CENTER
 		VBox center = new VBox(20);
-		Label depart = new Label("Abfahrt von " + zielortArea.getText() + " um: " + depTime + "h");
+		Label depart = new Label("Abfahrt von " + destLoc + " um: " + depTime + "h");
 		depart.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		depart.setTextFill(fontCollorGlobal);
-		Label dest = new Label("Ankunft in " + ankunftsortArea.getText() + " um: " + destTime + "h");
+		Label dest = new Label("Ankunft in " + departLoc + " um: " + destTime + "h");
 		dest.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		dest.setTextFill(fontCollorGlobal);
 		Label travelTime = new Label("Fahrtzeit " + travelTimeInH + "h");
@@ -187,7 +208,7 @@ public class Main extends Application {
 
 		// button setup
 		btnConfirmGui1.setOnAction(e -> {
-			System.out.println("from " + departLoc + " to " + zielortArea.getText());
+			//System.out.println("from " + departLoc + " to " + zielortArea.getText());
 			window.setScene(gui2);
 		});
 		btnConfirmGui2.setOnAction(e -> {
