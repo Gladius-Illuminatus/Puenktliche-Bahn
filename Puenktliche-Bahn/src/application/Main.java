@@ -30,7 +30,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-
+//
 		// Global Variables
 		// global settings to be uses throughout the programm
 		String titleOfWindow = "Fahrkartenautomat der PB";
@@ -47,7 +47,7 @@ public class Main extends Application {
 		int fontSizeGlobal = 80;
 		int sizeH = 1920;
 		int sizeV = 1000;
-		int imageSize = 200;
+		int imageSize = 250;
 		
 		
 		// GUI 1 Andre Fuchs
