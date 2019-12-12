@@ -1,5 +1,9 @@
 package application;
 
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -43,13 +47,37 @@ public class Main extends Application {
 		String destTime = "11:12";
 		String travelTimeInH = "25";
 		String fontGlobal = "Calibri";
+		int velocity = 300; //velocity in km/h
 		Color fontCollorGlobal = Color.RED;
 		int fontSizeGlobal = 80;
 		int sizeH = 1920;
 		int sizeV = 1000;
 		int imageSize = 250;
+		String saveFile = "Staedte.txt";
 		
+		//CITIES AND DISTANCES - ARRAYS	
+		FileReader fileReader = new FileReader(saveFile);
+		char [] carrierChar = new char[10000000];
+		fileReader.read(carrierChar);
+		String carrierStringLong = new String(carrierChar);
+
+		String[] carrierStringSplit = carrierStringLong.split("\r|;");
+			
+			//define length of arrays
+		String[] cities = new String [carrierStringSplit.length/2];
+		long[] distances = new long [carrierStringSplit.length/2];
+			
+		for (int i = 0; i < carrierStringSplit.length/2; i++) {
+			//every second entry is a city
+			cities[i] = carrierStringSplit[i*2]; 
+		}
 		
+		for (int i = 0; i < carrierStringSplit.length/2; i++) {
+			//after a city comes a distance-value
+			distances[i] = Long.parseUnsignedLong(carrierStringSplit[i*2+1]); 
+		}
+		
+	
 		
 		// GUI 1 Andre Fuchs
 
@@ -206,17 +234,31 @@ public class Main extends Application {
 		window.setTitle(titleOfWindow);
 		window.show();
 
-		
-		//assign areas
+		//TO BE FIXED: values won't change
+		int indexPositionAnkunft = 1;
+		int indexPositionZiel = 1;
+		positionOf(cities,ankunftsortArea.getText());
+		positionOf(cities,zielortArea.getText());
+		double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/velocity;
 		
 		
 		// button setup
 		btnConfirmGui1.setOnAction(e -> {
-			//System.out.println("from " + departLoc + " to " + zielortArea.getText());
 			window.setScene(gui2);
-			depart.setText("Abfahrt von " + ankunftsortArea.getText() + " um: " + depTime + "h");
-			dest.setText("Abfahrt von " + zielortArea.getText() + " um: " + depTime + "h");
 			
+			if (weHave(ankunftsortArea.getText(),cities)) {
+				depart.setText("Abfahrt von " + ankunftsortArea.getText() + " um: " + "12:88" + "h");
+			}else {
+				depart.setText("ERROR - User too imaginative");
+			}
+			if (weHave(zielortArea.getText(),cities)) {
+				dest.setText("Ankunft in " +  zielortArea.getText() + " um: " + (duration+12)%24 + "h");
+			}else {
+				dest.setText("ERROR - User too stupid to write");
+			}
+			
+			travelTime.setText("Fahrtzeit " + duration + "h");
+			System.out.println(cities[indexPositionAnkunft] + cities[indexPositionZiel]);
 		});
 		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
@@ -226,4 +268,23 @@ public class Main extends Application {
 		
 	}//end start
 
+	public static boolean weHave(String input, String[]array) {
+		boolean check=false;
+		 List<String> list = Arrays.asList(array);
+	        check=list.contains(input);
+		return check;
+	}//end weHave - Method
+	
+	public static int positionOf(String[] array, String input){
+				int position = -1;
+				for (int i=0;i<array.length;i++) {
+				    if (array[i].equals(input)) {
+				        position = i;
+				    }
+				}
+				return position;
+	}//end positionOf - Method
+	
+	
+	
 }//end class
