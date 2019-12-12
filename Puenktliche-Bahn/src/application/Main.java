@@ -50,6 +50,7 @@ public class Main extends Application {
 		int imageSize = 250;
 		
 		
+		
 		// GUI 1 Andre Fuchs
 
 		// call arg0 window for easy use
@@ -173,7 +174,7 @@ public class Main extends Application {
 		topGUI2.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI2.setTop(topGUI2);
 		
-
+		
 		// CENTER
 		VBox center = new VBox(20);
 		Label depart = new Label("Abfahrt von " + destLoc + " um: " + depTime + "h");
@@ -205,11 +206,17 @@ public class Main extends Application {
 		window.setTitle(titleOfWindow);
 		window.show();
 
-
+		
+		//assign areas
+		
+		
 		// button setup
 		btnConfirmGui1.setOnAction(e -> {
 			//System.out.println("from " + departLoc + " to " + zielortArea.getText());
 			window.setScene(gui2);
+			depart.setText("Abfahrt von " + ankunftsortArea.getText() + " um: " + depTime + "h");
+			dest.setText("Abfahrt von " + zielortArea.getText() + " um: " + depTime + "h");
+			
 		});
 		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
@@ -217,6 +224,6 @@ public class Main extends Application {
 
 
 		
-	}
+	}//end start
 
-}
+}//end class
