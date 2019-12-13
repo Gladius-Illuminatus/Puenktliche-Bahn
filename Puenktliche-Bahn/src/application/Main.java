@@ -264,7 +264,7 @@ public class Main extends Application {
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
-		
+		//
 			window.setScene(gui2);
 			int indexPositionAnkunft =positionOf(cities,(String)ankunftCombo.getValue());
 			int indexPositionZiel = positionOf(cities,(String) destCombo.getValue());
