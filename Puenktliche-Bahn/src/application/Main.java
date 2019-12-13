@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -77,6 +79,9 @@ public class Main extends Application {
 			distances[i] = Long.parseUnsignedLong(carrierStringSplit[i*2+1]); 
 		}
 		
+		 // Create a combo box 
+       
+  
 	
 		
 		// GUI 1 Andre Fuchs
@@ -137,7 +142,7 @@ public class Main extends Application {
 		topGUI1.getChildren().addAll(titleGUI1,topRightGUI1);
 		topGUI1.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI1.setTop(topGUI1);
-		
+		//VBox vboxTestCombo = new VBox(borderPaneGUI1,combo_box);
 		
 		// RIGHT
 		/*
@@ -150,6 +155,10 @@ public class Main extends Application {
 		// CENTER
 		TextArea ankunftsortArea = new TextArea();
 		// ScrollPane scrollPane = new ScrollPane(textArea);
+		ComboBox ankunftCombo = new ComboBox(FXCollections.observableArrayList(cities)); 
+		ankunftCombo.setPromptText("Abfahrtsort");
+		ankunftCombo.setStyle("-fx-font: "+100+"px \""+fontGlobal+"\";-fx-font-weight: bold;-fx-text-box-border: red;");
+		
 		ankunftsortArea.setPromptText("Abfahrtsort");
 		ankunftsortArea.setEditable(true);
 		ankunftsortArea.setPrefHeight(80.0);
@@ -158,6 +167,10 @@ public class Main extends Application {
 		// ankunftsortArea.setTextFill(Color.RED);
 		
 
+		ComboBox destCombo = new ComboBox(FXCollections.observableArrayList(cities)); 
+		destCombo.setPromptText("Zielort");
+		destCombo.setStyle("-fx-font: "+100+"px \""+fontGlobal+"\";-fx-font-weight: bold;");
+		
 		TextArea zielortArea = new TextArea();
 		// ScrollPane scrollPane = new ScrollPane(zielortArea);
 		zielortArea.setPromptText("Zielort");
@@ -168,7 +181,7 @@ public class Main extends Application {
 		// zielortArea.setTextFill(Color.RED);
 		
 
-		VBox vPanel1 = new VBox(30, ankunftsortArea, zielortArea);
+		VBox vPanel1 = new VBox(30, ankunftCombo, destCombo);
 		vPanel1.setAlignment(Pos.CENTER);
 		borderPaneGUI1.setCenter(vPanel1);
 		borderPaneGUI1.setAlignment(vPanel1, Pos.CENTER);
@@ -234,7 +247,7 @@ public class Main extends Application {
 		window.setTitle(titleOfWindow);
 		window.show();
 
-		//TO BE FIXED: values won't change
+		//TO BE FIXED: values of variables won't change
 		int indexPositionAnkunft = 1;
 		int indexPositionZiel = 1;
 		positionOf(cities,ankunftsortArea.getText());
@@ -246,19 +259,16 @@ public class Main extends Application {
 		btnConfirmGui1.setOnAction(e -> {
 			window.setScene(gui2);
 			
-			if (weHave(ankunftsortArea.getText(),cities)) {
-				depart.setText("Abfahrt von " + ankunftsortArea.getText() + " um: " + "12:88" + "h");
-			}else {
-				depart.setText("ERROR - User too imaginative");
-			}
-			if (weHave(zielortArea.getText(),cities)) {
-				dest.setText("Ankunft in " +  zielortArea.getText() + " um: " + (duration+12)%24 + "h");
-			}else {
-				dest.setText("ERROR - User too stupid to write");
-			}
+			
+				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + "12:88" + "h");
+				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + (duration+12)%24 + "h");
+			
 			
 			travelTime.setText("Fahrtzeit " + duration + "h");
 			System.out.println(cities[indexPositionAnkunft] + cities[indexPositionZiel]);
+			
+			//change image
+			iv1.setImage(new Image(images[(int) (Math.random() * images.length)]));
 		});
 		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
