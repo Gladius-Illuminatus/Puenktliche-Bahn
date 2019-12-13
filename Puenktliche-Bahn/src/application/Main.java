@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -42,7 +44,7 @@ public class Main extends Application {
 		String titleOfWindow = "Fahrkartenautomat der PB";
 		//is it pretty NO!, does it work ? YES, do  I have a better solution ? wish I had...
 		//NEEDS FIXING
-		String titleOfGUI = "                    Fahrkartenautomat der PB";
+		String titleOfGUI = "                            Fahrkartenautomat der PB";
 		String departLoc = "dep";
 		String destLoc = "dest";
 		String depTime = "00:00";
@@ -248,27 +250,37 @@ public class Main extends Application {
 		window.show();
 
 		//TO BE FIXED: values of variables won't change
-		int indexPositionAnkunft = 1;
-		int indexPositionZiel = 1;
-		positionOf(cities,ankunftsortArea.getText());
-		positionOf(cities,zielortArea.getText());
-		double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/velocity;
+		//int indexPositionAnkunft = 1;
+		//int indexPositionZiel = 1;
+		//positionOf(cities,ankunftsortArea.getText());
+		//positionOf(cities,zielortArea.getText());
+		//double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/velocity;
 		
 		
 		// button setup
-		btnConfirmGui1.setOnAction(e -> {
-			window.setScene(gui2);
+		btnConfirmGui1.setOnAction(new EventHandler<ActionEvent>() {
 			
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+		
+			window.setScene(gui2);
+			int indexPositionAnkunft =positionOf(cities,(String)ankunftCombo.getValue());
+			int indexPositionZiel = positionOf(cities,(String) destCombo.getValue());
+			double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/300;
 			
 				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + "12:88" + "h");
 				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + (duration+12)%24 + "h");
 			
 			
 			travelTime.setText("Fahrtzeit " + duration + "h");
-			System.out.println(cities[indexPositionAnkunft] + cities[indexPositionZiel]);
+			System.out.print(cities[indexPositionAnkunft] +" to "+ cities[indexPositionZiel]+"\t");
+			System.out.println("duration" + duration);
 			
 			//change image
 			iv1.setImage(new Image(images[(int) (Math.random() * images.length)]));
+			}
 		});
 		btnConfirmGui2.setOnAction(e -> {
 			window.setScene(gui1);
