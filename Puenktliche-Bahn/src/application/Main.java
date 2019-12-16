@@ -326,8 +326,8 @@ public class Main extends Application {
 				// TODO Auto-generated method stub
 				
 			window.setScene(gui2);
-			int indexPositionAnkunft =positionOf(cities,(String)ankunftCombo.getValue());
-			int indexPositionZiel = positionOf(cities,(String) destCombo.getValue());
+			int indexPositionAnkunft =positionOfStringInArray(cities,(String)ankunftCombo.getValue());
+			int indexPositionZiel = positionOfStringInArray(cities,(String) destCombo.getValue());
 			double duration = Math.sqrt(Math.pow(((distances[indexPositionZiel]-distances[indexPositionAnkunft])/300.0),2));
 			//double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/300.0;
 			double departTime = convertToTimeDouble((int)(Math.random()*24))+(Math.random()*60/100);
@@ -337,11 +337,11 @@ public class Main extends Application {
 			//String.format("%1$:.2f", departTime)
 			
 			
-				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + departTime+ "h");
-				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + (duration+departTime)%24 + "h");
+				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime)+ "h");
+				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + formatDoubleToString(duration+departTime) + "h");
 			
 			
-			travelTime.setText("Fahrtzeit " + duration + "h");
+			travelTime.setText("Fahrtzeit " + formatDoubleToString(duration) + "h");
 			System.out.print(cities[indexPositionAnkunft] +" to "+ cities[indexPositionZiel]+"\t");
 			System.out.print("duration" + duration);
 			System.out.println("\tdepart" + distances[indexPositionAnkunft] + "\tdest" + distances[indexPositionZiel]);
@@ -379,6 +379,13 @@ public class Main extends Application {
 
 		
 	}//end start
+	
+	//takes double and gives it back as formatted String XX.xx
+	public String  formatDoubleToString(double input) {
+		String formatedString;
+		formatedString=String.format("%.2f", (double)input);
+		return formatedString;
+	}
 
 	public static boolean weHave(String input, String[]array) {
 		boolean check=false;
@@ -387,7 +394,7 @@ public class Main extends Application {
 		return check;
 	}//end weHave - Method
 	
-	public static int positionOf(String[] array, String input){
+	public static int positionOfStringInArray(String[] array, String input){
 				int position = -1;
 				for (int i=0;i<array.length;i++) {
 				    if (array[i].equals(input)) {
