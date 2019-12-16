@@ -1,7 +1,11 @@
 package application;
 
 import java.io.FileReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javafx.application.Application;
@@ -264,19 +268,26 @@ public class Main extends Application {
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
-		//
 			window.setScene(gui2);
 			int indexPositionAnkunft =positionOf(cities,(String)ankunftCombo.getValue());
 			int indexPositionZiel = positionOf(cities,(String) destCombo.getValue());
-			double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/300;
+			double duration = Math.sqrt(Math.pow(((distances[indexPositionZiel]-distances[indexPositionAnkunft])/300.0),2));
+			//double duration = (distances[indexPositionZiel]-distances[indexPositionAnkunft])/300.0;
+			double departTime = convertToTimeDouble((int)(Math.random()*24))+(Math.random()*60/100);
+			String durationS = displayLikeClock(departTime);
+
 			
-				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + "12:88" + "h");
-				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + (duration+12)%24 + "h");
+			//String.format("%1$:.2f", departTime)
+			
+			
+				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + departTime+ "h");
+				dest.setText("Ankunft in " +  destCombo.getValue() + " um: " + (duration+departTime)%24 + "h");
 			
 			
 			travelTime.setText("Fahrtzeit " + duration + "h");
 			System.out.print(cities[indexPositionAnkunft] +" to "+ cities[indexPositionZiel]+"\t");
-			System.out.println("duration" + duration);
+			System.out.print("duration" + duration);
+			System.out.println("\tdepart" + distances[indexPositionAnkunft] + "\tdest" + distances[indexPositionZiel]);
 			
 			//change image
 			iv1.setImage(new Image(images[(int) (Math.random() * images.length)]));
@@ -306,6 +317,21 @@ public class Main extends Application {
 				}
 				return position;
 	}//end positionOf - Method
+	
+	public static String displayLikeClock(double time) {
+		String timeAsClock="did not work";
+		int timeH = (int)time;
+		int timeMin = (int)((time-timeH)*60*100);
+		timeAsClock = timeH + ":" + timeMin;
+		return timeAsClock;
+	}
+	
+	public static double convertToTimeDouble(double time) {
+		int timeH = (int)time;
+		double timeMin = (time-timeH)*60;
+		return timeH+timeMin;
+	}
+	
 	
 	
 	
