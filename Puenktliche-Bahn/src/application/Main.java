@@ -105,16 +105,22 @@ public class Main extends Application {
 		Image img = new Image(images[chooseImage]);
 		
 		//Image GUI1
-		ImageView iv1 = new ImageView(img);
-		iv1.setFitWidth(imageSize);
-		iv1.setPreserveRatio(true);
-		iv1.setSmooth(true);
+		ImageView logoGUI1 = new ImageView(img);
+		logoGUI1.setFitWidth(imageSize);
+		logoGUI1.setPreserveRatio(true);
+		logoGUI1.setSmooth(true);
 		
 		//Image GUI2
-		ImageView iv2 = new ImageView(img);
-		iv2.setFitWidth(imageSize);
-		iv2.setPreserveRatio(true);
-		iv2.setSmooth(true);
+		ImageView logoGUI2 = new ImageView(img);
+		logoGUI2.setFitWidth(imageSize);
+		logoGUI2.setPreserveRatio(true);
+		logoGUI2.setSmooth(true);
+		
+		//Image GUI2
+		ImageView logoGUI3 = new ImageView(img);
+		logoGUI3.setFitWidth(imageSize);
+		logoGUI3.setPreserveRatio(true);
+		logoGUI3.setSmooth(true);
 
 		// Background
 		BackgroundFill background_fill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
@@ -143,7 +149,7 @@ public class Main extends Application {
 		Label titleGUI1 = new Label(titleOfGUI);
 		titleGUI1.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		titleGUI1.setTextFill(fontCollorGlobal);
-		topRightGUI1.getChildren().addAll(iv1);
+		topRightGUI1.getChildren().addAll(logoGUI1);
 		topRightGUI1.setAlignment(Pos.TOP_RIGHT);
 		topGUI1.getChildren().addAll(titleGUI1,topRightGUI1);
 		topGUI1.setAlignment(Pos.TOP_CENTER);
@@ -215,7 +221,7 @@ public class Main extends Application {
 		Label titleGUI2 = new Label(titleOfGUI);
 		titleGUI2.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		titleGUI2.setTextFill(fontCollorGlobal);
-		topRightGUI2.getChildren().addAll(iv2);
+		topRightGUI2.getChildren().addAll(logoGUI2);
 		topRightGUI2.setAlignment(Pos.TOP_RIGHT);
 		topGUI2.getChildren().addAll(titleGUI2,topRightGUI2);
 		topGUI2.setAlignment(Pos.TOP_CENTER);
@@ -245,10 +251,61 @@ public class Main extends Application {
 		bottom.getChildren().addAll(btnConfirmGui2);
 		bottom.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI2.setBottom(bottom);
-
+		
+		//GUI3 André_____________________________________________
+		BorderPane borderPaneGUI3 = new BorderPane();
+		borderPaneGUI3.setBackground(background);
+		borderPaneGUI3.setPadding(new Insets(30));
+		
+		// TOP
+		HBox topGUI3 = new HBox();
+		HBox.setHgrow(topGUI3, Priority.ALWAYS);
+		HBox topRightGUI3 = new HBox(30);
+		HBox.setHgrow(topRightGUI3, Priority.ALWAYS);
+		
+		Label titleGUI3 = new Label(titleOfGUI);
+		
+		titleGUI3.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		titleGUI3.setTextFill(fontCollorGlobal);
+		
+		topRightGUI3.getChildren().addAll(logoGUI3);
+		topRightGUI3.setAlignment(Pos.TOP_RIGHT);
+		
+		topGUI3.getChildren().addAll(titleGUI3,topRightGUI3);
+		topGUI3.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI3.setTop(topGUI3);
+		// CENTER
+		VBox centerGUI3 = new VBox(20);
+		
+		String[]klassen = {"Erstklassig","Zweitklassig"};
+		ComboBox klassenCombo = new ComboBox(FXCollections.observableArrayList(klassen)); 
+		klassenCombo.setPromptText("Klasse");
+		klassenCombo.setStyle("-fx-font: "+100+"px \""+fontGlobal+"\";-fx-font-weight: bold;-fx-text-box-border: red;");
+		
+		String[]altersStufe = {"Kleingeist", "Halbstark","Grossmaul "};
+		ComboBox altersStufeCombo = new ComboBox(FXCollections.observableArrayList(altersStufe)); 
+		altersStufeCombo.setPromptText("Alterstufe");
+		altersStufeCombo.setStyle("-fx-font: "+100+"px \""+fontGlobal+"\";-fx-font-weight: bold;-fx-text-box-border: red;");
+		
+		centerGUI3.getChildren().addAll(klassenCombo, altersStufeCombo);
+		centerGUI3.setAlignment(Pos.CENTER);
+		borderPaneGUI3.setCenter(centerGUI3);
+		
+		// BOTTOM
+		HBox bottomGUI3 = new HBox(20);
+		Button btnConfirmGui3 = new Button("Auswahl bestätigen");
+		btnConfirmGui3.setTextFill(fontCollorGlobal);
+		btnConfirmGui3.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		bottomGUI3.getChildren().addAll(btnConfirmGui3);
+		bottomGUI3.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI3.setBottom(bottomGUI3);
+			
+		
+		
 		// window setup
 		Scene gui1 = new Scene(borderPaneGUI1, sizeH, sizeV);
 		Scene gui2 = new Scene(borderPaneGUI2, sizeH, sizeV);
+		Scene gui3 = new Scene(borderPaneGUI3, sizeH, sizeV);
 		window.setScene(gui1);
 		window.setTitle(titleOfWindow);
 		window.show();
@@ -290,11 +347,33 @@ public class Main extends Application {
 			System.out.println("\tdepart" + distances[indexPositionAnkunft] + "\tdest" + distances[indexPositionZiel]);
 			
 			//change image
-			iv1.setImage(new Image(images[(int) (Math.random() * images.length)]));
+			logoGUI2.setImage(new Image(images[(int) (Math.random() * images.length)]));
 			}
 		});
-		btnConfirmGui2.setOnAction(e -> {
-			window.setScene(gui1);
+		
+		
+		btnConfirmGui2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				window.setScene(gui3);
+				
+				//change image
+				logoGUI3.setImage(new Image(images[(int) (Math.random() * images.length)]));
+				
+			}
+		});
+		
+		btnConfirmGui3.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				window.setScene(gui1);
+				
+				//change image
+				logoGUI1.setImage(new Image(images[(int) (Math.random() * images.length)]));
+				
+			}
 		});
 
 
