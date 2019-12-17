@@ -36,7 +36,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-//
+		//
 		// Global Variables
 		// global settings to be uses throughout the program
 		String titleOfWindow = "Fahrkartenautomat der PB";
@@ -104,6 +104,12 @@ public class Main extends Application {
 
 		// Image GUI2
 		ImageView logoGUI3 = new ImageView(img);
+		logoGUI3.setFitWidth(imageSize);
+		logoGUI3.setPreserveRatio(true);
+		logoGUI3.setSmooth(true);
+
+		// Image GUI4
+		ImageView logoGUI4 = new ImageView(img);
 		logoGUI3.setFitWidth(imageSize);
 		logoGUI3.setPreserveRatio(true);
 		logoGUI3.setSmooth(true);
@@ -233,10 +239,10 @@ public class Main extends Application {
 		topGUI3.getChildren().addAll(titleGUI3, topRightGUI3);
 		topGUI3.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI3.setTop(topGUI3);
-		
+
 		// CENTER
 		VBox centerGUI3 = new VBox(20);
-		
+
 		String[] klassen = { "Erstklassig", "Zweitklassig" };
 		ComboBox klassenCombo = new ComboBox(FXCollections.observableArrayList(klassen));
 		klassenCombo.setPromptText("Klasse");
@@ -262,10 +268,64 @@ public class Main extends Application {
 		bottomGUI3.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI3.setBottom(bottomGUI3);
 
+		// GUI 4 Philippe
+
+		// GUI 4 BorderPane
+		BorderPane borderPaneGUI4 = new BorderPane();
+		borderPaneGUI4.setPadding(new Insets(5));
+		borderPaneGUI4.setBackground(background);
+		borderPaneGUI4.setPadding(new Insets(30));
+
+		// TOP
+		HBox topGUI4 = new HBox();
+		HBox.setHgrow(topGUI4, Priority.ALWAYS);
+		HBox topRightGUI4 = new HBox(30);
+		HBox.setHgrow(topRightGUI4, Priority.ALWAYS);
+		Label titleGUI4 = new Label(titleOfGUI);
+		titleGUI4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		titleGUI4.setTextFill(fontCollorGlobal);
+		topRightGUI4.getChildren().addAll(logoGUI4);
+		topRightGUI4.setAlignment(Pos.TOP_RIGHT);
+		topGUI4.getChildren().addAll(titleGUI4,topRightGUI4);
+		topGUI4.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI4.setTop(topGUI4);
+
+
+		// CENTER
+		VBox center4 = new VBox(20);
+		Label depart4 = new Label("Abfahrt von " + destLoc + " um: " + depTime + "h"  );
+		depart4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		depart4.setTextFill(fontCollorGlobal);
+		Label dest4 = new Label("Ankunft in " + departLoc + " um: " + destTime + "h");
+		dest4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		dest4.setTextFill(fontCollorGlobal);
+		Label klasse4 = new Label();
+		klasse4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		klasse4.setTextFill(fontCollorGlobal);
+		Label age4 = new Label("" );
+		age4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		age4.setTextFill(fontCollorGlobal);
+		center4.getChildren().addAll(depart4, dest4, klasse4, age4);
+		center4.setAlignment(Pos.CENTER);
+		borderPaneGUI4.setCenter(center4);
+
+		// BOTTOM
+		HBox bottom4 = new HBox(20);
+		Button btnConfirmGui4 = new Button("Fahrkarte drucken");
+		btnConfirmGui4.setTextFill(fontCollorGlobal);
+		btnConfirmGui4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
+		bottom4.getChildren().addAll(btnConfirmGui4);
+		bottom4.setAlignment(Pos.TOP_CENTER);
+		borderPaneGUI4.setBottom(bottom4);
+
+
+
 		//window setup
 		Scene gui1 = new Scene(borderPaneGUI1, sizeH, sizeV);
 		Scene gui2 = new Scene(borderPaneGUI2, sizeH, sizeV);
 		Scene gui3 = new Scene(borderPaneGUI3, sizeH, sizeV);
+		Scene gui4 = new Scene(borderPaneGUI4, sizeH, sizeV);
+		
 		window.setScene(gui1);
 		window.setTitle(titleOfWindow);
 		window.show();
@@ -316,17 +376,45 @@ public class Main extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				window.setScene(gui1);
+
+				int indexPositionAnkunft = positionOfStringInArray(cities, (String) ankunftCombo.getValue());
+				int indexPositionZiel = positionOfStringInArray(cities, (String) destCombo.getValue());
+				double duration = Math
+						.sqrt(Math.pow(((distances[indexPositionZiel] - distances[indexPositionAnkunft]) / 300.0), 2));
+				double departTime = convertToTimeDouble((int) (Math.random() * 24)) + (Math.random() * 60 / 100);
+				String durationS = displayLikeClock(departTime);
+
+				depart4.setText(
+						"Von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime) + "h");
+				dest4.setText("Ankunft in " + destCombo.getValue() + " um: "
+						+ formatDoubleToString(duration + departTime) + "h");
+				klasse4.setText((String) klassenCombo.getValue());
+				age4.setText((String) altersStufeCombo.getValue());
+
+				window.setScene(gui4);
 
 				// change image
+				logoGUI4.setImage(new Image(images[(int) (Math.random() * images.length)]));
+
+			}
+		});
+
+		btnConfirmGui4.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				window.setScene(gui1);
 				logoGUI1.setImage(new Image(images[(int) (Math.random() * images.length)]));
 
 			}
 		});
 
+
+
+
 	}// end start
-	
-	
+
+
 
 	// takes double and gives it back as formatted String XX.xx
 	public String formatDoubleToString(double input) {
