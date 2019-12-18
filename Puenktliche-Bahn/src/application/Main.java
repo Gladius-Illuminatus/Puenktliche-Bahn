@@ -422,13 +422,13 @@ public class Main extends Application {
 				window.setFullScreenExitHint("");
 				death.setCursor(Cursor.NONE);
 				
-				/*
-				String musicFile = "bsodSound.mp3";     // For example
+				
+				String musicFile = "bsod.mp3";     // For example
 
 				Media sound = new Media(new File(musicFile).toURI().toString());
 				MediaPlayer mediaPlayer = new MediaPlayer(sound);
 				mediaPlayer.play();
-				*/
+				
 				window.setFullScreen(true);
 				
 
