@@ -414,7 +414,7 @@ public class Main extends Application {
 		});
 
 		btnConfirmGui4.setOnAction(new EventHandler<ActionEvent>() {
-
+			
 			@Override
 			public void handle(ActionEvent event) {
 				window.setScene(death);
