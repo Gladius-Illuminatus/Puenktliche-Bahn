@@ -57,7 +57,7 @@ Deshalb wünsche ich mir, dass durch diese Interfaces der Kunden schnell, unkomp
 
 
 ## 3. Epic 
-Als Kunde möchte ich meinen Abfahrts- und Zielort auswählen können, und sofort danach zum Ticketkauf weitergeleitet werden, in dem die Zugfahrklasse und Alterskategorie auswählen und sofort das Ticket beziehen kann.
+Als Kunde möchte ich meinen Abfahrts- und Zielort auswählen können, und zum Ticketkauf weitergeleitet werden, die Zugfahrklasse und Alterskategorie auswählen und sofort das Ticket beziehen.
  
  
  
@@ -98,7 +98,7 @@ Als Kunde möchte ich meinen Abfahrts- und Zielort auswählen können, und sofor
 
 Besitz keine Kenntnisse über die Software.
 
-Das wichtigste Ziel ist, dass die Software ohne Komplikationen und Anwendungskenntnisse ein bedient werden kann.
+Das wichtigste Ziel ist, dass die Software ohne Komplikationen und Anwendungskenntnisse bedient werden kann.
 
 **Supporter:**
 
@@ -128,7 +128,7 @@ Voraussetzung|GUI Panel 1 Lay-out + Liste der Abfahrt und Zielorte
 Task 1|GUI Panel 1 Layout erstellen|Button für Ziel und Abfahrtsort, Bestätigen vorhanden.
 Task 2|Liste der Orte erstellen|Liste ist mit min 10 Orten in txt Forma vorhanden
 Task3.1|GUI Panel 1 File Reader|Variablen werden korrekt eingelesen
-Task3.2|GUI Panel 1 Programmieren, liste einbinden, Button erstellen|Alle Button laut Layout sind vorhanden, orte können ausgewählt werden und werden korrekt angezeigt
+Task3.2|GUI Panel 1 Programmieren, Liste einbinden, Button erstellen|Alle Button laut Layout sind vorhanden, Orte können ausgewählt werden und werden korrekt angezeigt
 Task 4.1|Unit Test 1.1 schreiben|
 Task 4.2|Unit Test 1.2 schreiben|
 
@@ -136,10 +136,10 @@ Task 4.2|Unit Test 1.2 schreiben|
 
 Use Case 2|Abfahrt, Ankunftszeit angeben, bestätigen/zurück|Akzeptanzkriterium
 ------|------|------
-Beschreibung|Der Benutzer sieht die Theoretische Abfahrt und Ankunftszeit
+Beschreibung|Der Benutzer sieht die theoretische Abfahrt und Ankunftszeit
 Voraussetzung|GUI Panel 2 Layout + Algorithmus zur Fahrzeit Berechnung
-Task 5|GUI Panel 2 Layout erstellen|Anzeigen für gewällter Abfahrts-, Zielort + nächste Verbindung und Fahrzeit + Bestätigungsknopf 
-Task 6|GUI Panel 2 Programmieren|Anzeige funktioniert gemäss Layout + der Button bestätigen ist vorhanden und schalten korrekt
+Task 5|GUI Panel 2 Layout erstellen|Anzeigen für gewählter Abfahrts-, Zielort + nächste Verbindung und Fahrzeit + Bestätigungsknopf 
+Task 6|GUI Panel 2 Programmieren|Anzeige funktioniert gemäss Layout + der Button bestätigen ist vorhanden und schaltet korrekt
 Task 7|Untit Test 2 schreiben
 
 
@@ -147,9 +147,9 @@ User Story 2
 
 Use Case 3|Zugfahrklasse und Alterskategorie auswählen|Akzeptanzkriterium
 ------|------|------
-Beschreibung|Der Benutzer kann zwischen Erst und Zweitklassig wählen und zwischen Kleingeist, halbstark und Grossmaul auswählen|
+Beschreibung|Der Benutzer kann zwischen Erst- und Zweitklassig wählen und zwischen Kleingeist, Halbstark und Grossmaul auswählen|
 Voraussetzung|GUI Panel 3 Layout
-Task 8|GUI Panel 3 Layout erstellen|Buttons für Klassen und Alterskategoriehen sind vorhanden
+Task 8|GUI Panel 3 Layout erstellen|Buttons für Klassen und Alterskategorien sind vorhanden
 Task 9|GUI Panel 3 Programmieren|Button gemäss Layout vorhanden
 | Schnittstelle erstellen |Variablen werden korrekt umgeschaltet
 Task 10|Unit Test 3 erstellen
@@ -161,7 +161,7 @@ Use Case 4|Ticket kaufen und bezahlen|Akzeptanzkriterium
 Beschreibung|Der Benutzer kann auf Kaufen tippen und bekommt eine Kaufbestätigung mit Ticket
 Voraussetzung|GUI Panel 4 Layout
 Task 11|GUI Panel 4 Layout erstellen|Button Kaufen, Layout Ticket erstellen
-Task 12|GUI Panel 4 Programmieren, Schnittstelle erstellen|Button gemäss Layout erstellen und variablen umstellen
+Task 12|GUI Panel 4 Programmieren, Schnittstelle erstellen|Button gemäss Layout erstellen und Variablen umstellen
 Task 13|Ticket ausgeben|Ticket wird gemäss Layout angezeigt
 Task 14|Unit Test 4 erstellen
 
@@ -187,13 +187,13 @@ Iteration 1  (11.12.19) |Iteration 2  (17.12.19) |Iteration 3  (10.01.20)
 Task 1: GUI Panel 1 Layout erstellen |~~Task 4.1: Unit Test 1.1 schreiben~~|~~Task 7: Unit Test 2 schreiben~~
 Task 2: Liste der Orte erstellen |~~Task 4.2: Unit Test 1.2 schreiben~~|~~Task 10: Unit Test 3 schreiben~~
 Task 3.1: GUI Panel 1 File Reader erstellen|Task 9: GUI Panel 3 Programmieren, Schnittstelle erstellen|~~Task 14: Unit Test 4 schreiben~~
-Task 3.2: GUI Panel 1 Programmieren, liste einbinden, Button erstellen| Task 12: GUI Panel 4 Programmieren, Schnittstelle erstellen |Bugs fixen: Blue Screen of Death reparieren.
+Task 3.2: GUI Panel 1 Programmieren, Liste einbinden, Button erstellen| Task 12: GUI Panel 4 Programmieren, Schnittstelle erstellen |Bugs fixen: Blue Screen of Death reparieren.
 Task 5: GUI Panel 2 Layout erstellen|Task 13 Ticket ausgeben
 Task 6: GUI Panel 2 Programmieren|Task 15: JUnitTest zu Funktion: positionOfStringInArray();
 Task 8: GUI Panel 3 Layout erstellen|Task 16: JUnitTest 2 zu Funktion: formatDoubleToString();
 Task 11: GUI Panel 4 Layout erstellen
 
-Task 15 und 16 wurden nach Absprache mit dem Lehrer Herr Bachmann erstellt, weil die vorigen Unit Tests der Task 4.1, 4.2, 7, 10 und 14 nicht in der vorgesehenen Form durführbar sind.
+Task 15 und 16 wurden nach Absprache mit dem Lehrer Herr Bachmann erstellt, weil die vorigen Unit Tests der Task 4.1, 4.2, 7, 10 und 14 nicht in der vorgesehenen Form durchführbar sind.
 
 
  
