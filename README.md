@@ -187,7 +187,7 @@ Iteration 1  (11.12.19) |Iteration 2  (17.12.19) |Iteration 3  (10.01.20)
 Task 1: GUI Panel 1 Layout erstellen |~~Task 4.1: Unit Test 1.1 schreiben~~|~~Task 7: Unit Test 2 schreiben~~
 Task 2: Liste der Orte erstellen |~~Task 4.2: Unit Test 1.2 schreiben~~|~~Task 10: Unit Test 3 schreiben~~
 Task 3.1: GUI Panel 1 File Reader erstellen|Task 9: GUI Panel 3 Programmieren, Schnittstelle erstellen|~~Task 14: Unit Test 4 schreiben~~
-Task 3.2: GUI Panel 1 Programmieren, liste einbinden, Button erstellen| Task 12: GUI Panel 4 Programmieren, Schnittstelle erstellen |Bugs fixen
+Task 3.2: GUI Panel 1 Programmieren, liste einbinden, Button erstellen| Task 12: GUI Panel 4 Programmieren, Schnittstelle erstellen |Bugs fixen: Blue Screen of Death reparieren.
 Task 5: GUI Panel 2 Layout erstellen|Task 13 Ticket ausgeben
 Task 6: GUI Panel 2 Programmieren|Task 15: JUnitTest zu Funktion: positionOfStringInArray();
 Task 8: GUI Panel 3 Layout erstellen|Task 16: JUnitTest 2 zu Funktion: formatDoubleToString();
