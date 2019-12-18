@@ -1,8 +1,13 @@
 package application;
 
+
 import java.io.FileReader;
 import java.util.Arrays;
 import java.util.List;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -11,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -110,9 +117,9 @@ public class Main extends Application {
 
 		// Image GUI4
 		ImageView logoGUI4 = new ImageView(img);
-		logoGUI3.setFitWidth(imageSize);
-		logoGUI3.setPreserveRatio(true);
-		logoGUI3.setSmooth(true);
+		logoGUI4.setFitWidth(imageSize);
+		logoGUI4.setPreserveRatio(true);
+		logoGUI4.setSmooth(true);
 
 		// Background
 		BackgroundFill background_fill = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
@@ -286,14 +293,13 @@ public class Main extends Application {
 		titleGUI4.setTextFill(fontCollorGlobal);
 		topRightGUI4.getChildren().addAll(logoGUI4);
 		topRightGUI4.setAlignment(Pos.TOP_RIGHT);
-		topGUI4.getChildren().addAll(titleGUI4,topRightGUI4);
+		topGUI4.getChildren().addAll(titleGUI4, topRightGUI4);
 		topGUI4.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI4.setTop(topGUI4);
 
-
 		// CENTER
 		VBox center4 = new VBox(20);
-		Label depart4 = new Label("Abfahrt von " + destLoc + " um: " + depTime + "h"  );
+		Label depart4 = new Label("Abfahrt von " + destLoc + " um: " + depTime + "h");
 		depart4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		depart4.setTextFill(fontCollorGlobal);
 		Label dest4 = new Label("Ankunft in " + departLoc + " um: " + destTime + "h");
@@ -302,7 +308,7 @@ public class Main extends Application {
 		Label klasse4 = new Label();
 		klasse4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		klasse4.setTextFill(fontCollorGlobal);
-		Label age4 = new Label("" );
+		Label age4 = new Label("");
 		age4.setFont(Font.font(fontGlobal, FontWeight.BOLD, fontSizeGlobal));
 		age4.setTextFill(fontCollorGlobal);
 		center4.getChildren().addAll(depart4, dest4, klasse4, age4);
@@ -318,19 +324,28 @@ public class Main extends Application {
 		bottom4.setAlignment(Pos.TOP_CENTER);
 		borderPaneGUI4.setBottom(bottom4);
 
+		// BSOD
 
+		BorderPane bsodScene = new BorderPane();
+		Image bsodImage = new Image("BSOD.png");
+		ImageView bsodView = new ImageView(bsodImage);
+		bsodView.setFitWidth(1920);
+		bsodView.setPreserveRatio(true);
+		bsodView.setSmooth(true);
+		bsodScene.setCenter(bsodView);
 
-		//window setup
+		// window setup
 		Scene gui1 = new Scene(borderPaneGUI1, sizeH, sizeV);
 		Scene gui2 = new Scene(borderPaneGUI2, sizeH, sizeV);
 		Scene gui3 = new Scene(borderPaneGUI3, sizeH, sizeV);
 		Scene gui4 = new Scene(borderPaneGUI4, sizeH, sizeV);
-		
+		Scene death = new Scene(bsodScene, sizeH, sizeV);
+
 		window.setScene(gui1);
 		window.setTitle(titleOfWindow);
 		window.show();
 
-		//button setup
+		// button setup
 		btnConfirmGui1.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -384,12 +399,11 @@ public class Main extends Application {
 				double departTime = convertToTimeDouble((int) (Math.random() * 24)) + (Math.random() * 60 / 100);
 				String durationS = displayLikeClock(departTime);
 
-				depart4.setText(
-						"Von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime) + "h");
+				depart4.setText("Von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime) + "h");
 				dest4.setText("Ankunft in " + destCombo.getValue() + " um: "
 						+ formatDoubleToString(duration + departTime) + "h");
-				klasse4.setText((String) klassenCombo.getValue());
-				age4.setText((String) altersStufeCombo.getValue());
+				klasse4.setText("Sie fahren: "+(String) klassenCombo.getValue());
+				age4.setText((String) "Sie sind ein: "+ altersStufeCombo.getValue());
 
 				window.setScene(gui4);
 
@@ -403,18 +417,25 @@ public class Main extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				window.setScene(gui1);
-				logoGUI1.setImage(new Image(images[(int) (Math.random() * images.length)]));
+				window.setScene(death);
+				window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+				window.setFullScreenExitHint("");
+				death.setCursor(Cursor.NONE);
+				
+				/*
+				String musicFile = "bsodSound.mp3";     // For example
+
+				Media sound = new Media(new File(musicFile).toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
+				*/
+				window.setFullScreen(true);
+				
 
 			}
 		});
 
-
-
-
 	}// end start
-
-
 
 	// takes double and gives it back as formatted String XX.xx
 	public String formatDoubleToString(double input) {
