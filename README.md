@@ -1,5 +1,5 @@
-# Puenktliche-Bahn
-Gruppenarbeit Mechatronik Trinational Descartes Daniel Ott, André Fuchs, Patrik Laemmle, Philippe Licht
+# Pünktliche-Bahn
+Gruppenarbeit Mechatronik Trinational Descartes Daniel Ott, André Fuchs, Patrik Lämmle, Philippe Licht
 
 ![Titel Bild]( https://github.com/Gladius-Illuminatus/Puenktliche-Bahn/blob/master/PB.png)
 
