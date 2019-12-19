@@ -207,7 +207,7 @@ Fahrzeit wird korrekt angezeigt|X
 Ankunftszeit wird korrekt angezeigt|X
 Fahrklasse kann ausgewählt werden|X
 Altersklasse kann ausgewählt werden|X
-Button Kaufen funktioniert|X
+Button Fahrkarte drucken funktioniert|X
 Ticket Ausgabe wird angezeigt||X
 
 
@@ -231,6 +231,7 @@ Layout 4
 ![Layout 4](https://github.com/Gladius-Illuminatus/Puenktliche-Bahn/blob/master/GUI%204.%20Layout.png )
 
 
+Planungsboard
 
 ![Trello](https://github.com/Gladius-Illuminatus/Puenktliche-Bahn/blob/master/Trello.PNG )
 
