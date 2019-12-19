@@ -1,8 +1,8 @@
 package application;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class MainTest extends Main {
 
@@ -20,7 +20,7 @@ class MainTest extends Main {
 		//creating expectetDouble before implementing test to be able to verify result with debugging
 		double expectetDouble = Double.parseDouble(formatDoubleToString(testDouble));
 		//checking against 12.35 because format() rounds last digit.
-		assertEquals(12.35, expectetDouble);
+		assertEquals(12.35, expectetDouble, 0.01);
 		
 	}
 
