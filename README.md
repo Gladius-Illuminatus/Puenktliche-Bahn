@@ -199,7 +199,7 @@ Task 15 und 16 wurden nach Absprache mit dem Lehrer Herr Bachmann erstellt, weil
  
 ## 12. Testing
 Zu testende Punkte|gut|schlecht
-------|------|------
+------|:------:|:------:
 Abfahrtsort kann ausgewählt werden|X
 Ankunftsort kann ausgewählt werden|X
 Button Bestätigen funktioniert auf allen Schaltflächen|X
