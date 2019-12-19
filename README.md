@@ -197,21 +197,21 @@ Task 15 und 16 wurden nach Absprache mit dem Lehrer Herr Bachmann erstellt, weil
 
 
  
-## 12 Testing
+## 12. Testing
 Zu testende Punkte|gut|schlecht
 ------|------|------
-Abfahrtsort kann ausgewählt werden
-Ankunftsort kann ausgewählt werden
-Button Bestätigen funktioniert auf allen Schaltflächen
-Fahrzeit wird korrekt angezeigt
-Ankunftszeit wird korrekt angezeigt
-Fahrklasse kann ausgewählt werden
-Altersklasse kann ausgewählt werden
-Button Kaufen funktioniert
-Ticket Ausgabe wird angezeigt
+Abfahrtsort kann ausgewählt werden|X
+Ankunftsort kann ausgewählt werden|X
+Button Bestätigen funktioniert auf allen Schaltflächen|X
+Fahrzeit wird korrekt angezeigt|X
+Ankunftszeit wird korrekt angezeigt|X
+Fahrklasse kann ausgewählt werden|X
+Altersklasse kann ausgewählt werden|X
+Button Kaufen funktioniert|X
+Ticket Ausgabe wird angezeigt||X
 
 
-## 13 Appendix
+## 13. Appendix
 
 ![Layout 1]( )
 
