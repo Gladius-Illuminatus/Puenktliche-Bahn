@@ -490,19 +490,36 @@ public class Main extends Application {
 		double min = (time-(long)time)%0.6;
 		hour = hour + carryHour;
 		
-	/*	double[]dayToYear= new double[6];
-		dayToYear[0]= hour /8760;//year
-		dayToYear[1]= hour /730;//month
-		dayToYear[2]= hour /168;//week
+		String[]dayToYear= new String[4];
+		long year = hour/8760;
+		hour -= year*8760;
+		long month = hour/730;
+		hour -= month*730;
+		long week = hour/168;
+		hour -= week*168;
+		long day = hour/24;
+		hour -= day*24;
 		
 		
-		
+		dayToYear[0]= year+"Years ";//year
+		dayToYear[1]= month+"Months ";//month
+		dayToYear[2]= week+"Weeks ";//week
+		dayToYear[3]= day+"Days ";//week
 		timeAsClock="";
-		*/
+		
+		for (int i = 0; i < dayToYear.length; i++) {
+			if (dayToYear[i].charAt(0)!='0') {
+				timeAsClock += dayToYear[i];
+			}
+		}
+		
+		
+		
+		
 		if ((int)(min*100)<10) {
-			timeAsClock = hour + ":0" + (int)(min*100) +"h";
+			timeAsClock += hour%24 + ":0" + (int)(min*100) +"h";
 		}else {
-			timeAsClock = hour + ":" + (int)(min*100) +"h";
+			timeAsClock += hour%24 + ":" + (int)(min*100) +"h";
 		}
 		return timeAsClock;
 	}
