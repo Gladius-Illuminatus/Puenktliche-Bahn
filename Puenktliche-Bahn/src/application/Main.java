@@ -40,7 +40,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	static double departTime=1;
 	@Override
 	public void start(Stage arg0) throws Exception {
 		//
@@ -344,10 +344,10 @@ public class Main extends Application {
 		window.setScene(gui1);
 		window.setTitle(titleOfWindow);
 		window.show();
-
+		
 		// button setup
 		btnConfirmGui1.setOnAction(new EventHandler<ActionEvent>() {
-
+		
 			@Override
 			public void handle(ActionEvent arg0) {
 
@@ -356,15 +356,16 @@ public class Main extends Application {
 				int indexPositionZiel = positionOfStringInArray(cities, (String) destCombo.getValue());
 				double duration = Math
 						.sqrt(Math.pow(((distances[indexPositionZiel] - distances[indexPositionAnkunft]) / 300.0), 2));
-				double departTime = convertToTimeDouble((int) (Math.random() * 24)) + (Math.random() * 60 / 100);
-				String durationS = displayLikeClock(departTime);
+				 departTime = ((int) (Math.random() * 24)) + (Math.random() * 60 / 100);
+				//String durationS = displayLikeClock(departTime);
 
-				depart.setText(
-						"Abfahrt von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime) + "h");
-				dest.setText("Ankunft in " + destCombo.getValue() + " um: "
-						+ formatDoubleToString(duration + departTime) + "h");
+				depart.setText("Abfahrt von " + ankunftCombo.getValue() + " um: " + displayDoubleLikeClock(departTime));
+				dest.setText("Ankunft in " + destCombo.getValue() + " um: "+ displayDoubleLikeClock(duration + departTime));
 
-				travelTime.setText("Fahrtzeit " + formatDoubleToString(duration) + "h");
+				travelTime.setText("Fahrtzeit " + convertToTimeString(duration));
+			//	travelTime.setText("Fahrtzeit " + formatDoubleToString( duration) + "h");
+				
+				
 				System.out.print(cities[indexPositionAnkunft] + " to " + cities[indexPositionZiel] + "\t");
 				System.out.print("duration" + duration);
 				System.out.println(
@@ -396,12 +397,12 @@ public class Main extends Application {
 				int indexPositionZiel = positionOfStringInArray(cities, (String) destCombo.getValue());
 				double duration = Math
 						.sqrt(Math.pow(((distances[indexPositionZiel] - distances[indexPositionAnkunft]) / 300.0), 2));
-				double departTime = convertToTimeDouble((int) (Math.random() * 24)) + (Math.random() * 60 / 100);
-				String durationS = displayLikeClock(departTime);
+				
+				//String durationS = displayLikeClock(departTime);
 
-				depart4.setText("Von " + ankunftCombo.getValue() + " um: " + formatDoubleToString(departTime) + "h");
+				depart4.setText("Von " + ankunftCombo.getValue() + " um: " + displayDoubleLikeClock(departTime));
 				dest4.setText("Ankunft in " + destCombo.getValue() + " um: "
-						+ formatDoubleToString(duration + departTime) + "h");
+						+ displayDoubleLikeClock( duration + departTime));
 				klasse4.setText("Sie fahren: "+(String) klassenCombo.getValue());
 				age4.setText((String) "Sie sind ein: "+ altersStufeCombo.getValue());
 
@@ -438,13 +439,13 @@ public class Main extends Application {
 	}// end start
 
 	// takes double and gives it back as formatted String XX.xx
-	public String formatDoubleToString(double input) {
+	public static String formatDoubleToString(double input) {
 		String formatedString;
 		formatedString = String.format("%.2f", (double) input);
 		return formatedString;
 	}
 
-	// PLEASE COMMENT!!
+	// OUT OF ORDER: looks if String-input is present in array
 	public static boolean weHave(String input, String[] array) {
 		boolean check = false;
 		List<String> list = Arrays.asList(array);
@@ -464,19 +465,46 @@ public class Main extends Application {
 	}// end positionOf - Method
 
 	// PLEASE COMMENT!!
-	public static String displayLikeClock(double time) {
+	public static String displayDoubleLikeClock(double time) {
 		String timeAsClock = "did not work";
-		int timeH = (int) time;
-		int timeMin = (int) ((time - timeH) * 60 * 100);
-		timeAsClock = timeH + ":" + timeMin;
+		long hour = ((long)time)%24;
+		int carryHour = (int)((time-(long)time)*100/60);
+		double min = (time-(int)time)%0.6;
+		hour = hour + carryHour;
+		
+		
+		if ((int)(min*100)<10) {
+			timeAsClock = hour + ":0" + (int)(min*100) +"h";
+		}else {
+			timeAsClock = hour + ":" + (int)(min*100) +"h";
+		}
+		
 		return timeAsClock;
 	}
 
-	// PLEASE COMMENT!!
-	public static double convertToTimeDouble(double time) {
-		int timeH = (int) time;
-		double timeMin = (time - timeH) * 60;
-		return timeH + timeMin;
+	// converts
+	public static String convertToTimeString(double time) {
+		String timeAsClock = "did not work";
+		long hour = ((long)time);
+		int carryHour = (int)((time-(long)time)*100/60);
+		double min = (time-(long)time)%0.6;
+		hour = hour + carryHour;
+		
+	/*	double[]dayToYear= new double[6];
+		dayToYear[0]= hour /8760;//year
+		dayToYear[1]= hour /730;//month
+		dayToYear[2]= hour /168;//week
+		
+		
+		
+		timeAsClock="";
+		*/
+		if ((int)(min*100)<10) {
+			timeAsClock = hour + ":0" + (int)(min*100) +"h";
+		}else {
+			timeAsClock = hour + ":" + (int)(min*100) +"h";
+		}
+		return timeAsClock;
 	}
 
 }// end class
